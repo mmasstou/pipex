@@ -1,13 +1,7 @@
-#include <stdio.h>
-#include "libft/libft.h"
-#include <fcntl.h>
-#include <unistd.h>
-
-
+#include "../include/pipex.h"
 
 int main(int argc, char *argv[], char *envp[])
 {
-    // int *fd;
     int index;
     char    **mypath;
     char       **cmd;
@@ -15,9 +9,8 @@ int main(int argc, char *argv[], char *envp[])
     char    *str;
     int i;
 
-    // fd = 0;
     mypath = NULL;
-    if (argc == 3)
+    if (argc == 2)
     {
         index = 0;
         while (envp[index])
@@ -37,7 +30,6 @@ int main(int argc, char *argv[], char *envp[])
             if (i == 0)
                 execve(str,cmd, envp);
         }
-
     }
     else
         write(1," we run pipex like this ./pipex  cmd1 cmd2  ",45);
