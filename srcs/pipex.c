@@ -8,10 +8,15 @@ int main(int argc, char *argv[], char *envp[])
     char       *cmd_flag;
     char    *str;
     int i;
+    //int end[2];
+    //pid_t parent;
 
     mypath = NULL;
     if (argc == 2)
     {
+        //pipe(end);
+        //parent = fork();
+        //printf("%d\n",parent);
         index = 0;
         while (envp[index])
         {
