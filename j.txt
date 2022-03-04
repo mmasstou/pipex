@@ -1,0 +1,11 @@
+LICENSE
+Makefile
+README.md
+include
+j.txt
+libft
+main.c
+pipex
+pipex.dSYM
+script.sh
+srcs
