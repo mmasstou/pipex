@@ -36,7 +36,7 @@ if [ $q == 1 ] ;then
 elif [ $q == 2 ] ;then
     make bonus  -C libft/
     echo "${_BLACK}   +> libft ${_End}${_RED} [Done] ${_End}"
-    make
+    make 
 else 
     echo "   +> chose one of option 1/2 -> Cleaning/Test"
     exit 0
