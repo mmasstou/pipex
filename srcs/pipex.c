@@ -6,10 +6,10 @@ int main(int argc, char *argv[], char *envp[])
     char    **mypath;
     char    **cmd;
     char    *str;
-	int     fd;
+	int     fd[2];
 
     mypath = NULL;
-    if (argc == 3)
+    if (argc == 4)
     {
         index = 0;
         while (envp[index])
@@ -23,12 +23,12 @@ int main(int argc, char *argv[], char *envp[])
             printf("%s\n",envp[index]);
             index++;
         }
-        fd = open(argv[2], O_WRONLY | O_CREAT );
-        if (fd == -1)
+        fd[0] = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC , 0777);
+        if (fd[0] == -1)
             return (ft_putendl_fd("file not found.",2), 1);
+		dup2(fd[0], STDOUT_FILENO);
         cmd = ft_split(argv[1], ' ');
         str = get_commend(cmd, mypath);
-        printf("++++++++++++%s\n",str);
         if (str == NULL)
             return (ft_putendl_fd("cmd not found.",2), 1);
         execve(str,cmd, envp);

@@ -1,2 +1,10 @@
-ls----al
-INFOPATH=/opt/homebrew/share/info/ls
+LICENSE
+Makefile
+README.md
+include
+libft
+pipex
+pipex.dSYM
+script.sh
+srcs
+test.txt
