@@ -1,0 +1,16 @@
+total 96
+.
+..
+.DS_Store
+.git
+.gitignore
+.vscode
+LICENSE
+Makefile
+README.md
+include
+libft
+pipex
+script.sh
+srcs
+test.txt
