@@ -14,13 +14,11 @@ int main(int argc, char *argv[], char *envp[])
         index = 0;
         while (envp[index])
         {
-            if (ft_strnstr(envp[index],"PATH=/", ft_strlen(envp[index])) != 0)
+            if (ft_strnstr(envp[index],"PATH=/", ft_strlen("PATH=/")) != 0)
+            {
                 mypath = ft_split(ft_strtrim(envp[index],"PATH="),':');
-            index++;
-        }
-        while (envp[index])
-        {
-            printf("%s\n",envp[index]);
+                //break;
+            }
             index++;
         }
         fd[0] = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC , 0777);

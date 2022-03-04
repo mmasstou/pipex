@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Debug",
             "program": "${workspaceFolder}/pipex",
-            "args": ["ls -al", "test.txt"],
+            "args": ["ls -al", "j.txt" , "h.txt"],
             "cwd": "${workspaceFolder}"
         }
     ]
