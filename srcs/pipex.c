@@ -17,7 +17,7 @@ int main(int argc, char *argv[], char *envp[])
             if (ft_strnstr(envp[index],"PATH=/", ft_strlen("PATH=/")) != 0)
             {
                 mypath = ft_split(ft_strtrim(envp[index],"PATH="),':');
-                //break;
+                break;
             }
             index++;
         }

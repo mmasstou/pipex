@@ -3,7 +3,7 @@
 #42login : mmasstou
 
 _End="\033[0m"
-C_DARKVIOLET="\033[38;5;31m"
+C_DARKVIOLET="\033[1;5;1;36m"
 _BLACK="\033[38;5;16m"
 _RED="\033[38;5;42m"
 _GREEN="\033[38;5;32m"
