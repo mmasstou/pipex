@@ -14,10 +14,7 @@ char    *get_commend(char **in_cmd, char **path)
 		access_result = access(cmd, X_OK);
 		// printf("%s ***** %d\n",cmd, access_result);
 		if (access_result == 0)
-		{
-			printf("---------------> %s\n",cmd);
 			return (ft_strdup(cmd));
-		}
 	}
 	return (NULL);
 }
