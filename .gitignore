@@ -35,8 +35,10 @@
 *.i*86
 *.x86_64
 *.hex
+pipex
 
 # Debug files
+.vscode/
 *.dSYM/
 *.su
 *.idb
