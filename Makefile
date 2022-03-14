@@ -2,7 +2,7 @@ NAME = pipex
 LIBFT = libft/libft.a
 
 
-SRCS = srcs/pipex.c srcs/get.c srcs/pipex_utils.c
+SRCS = srcs/pipex.c srcs/get.c srcs/pipex_utils.c srcs/open_file.c srcs/errors.c
 OBJS = $(SRCS:.c=.o)
 
 SRCS_BONUS = srcs/pipex_bonus.c
