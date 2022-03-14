@@ -86,7 +86,7 @@ int main(int argc, char *argv[], char *envp[])
 
         close(pipid[0]);
         close(pipid[1]);
-        waitpid(pid[0], NULL, 0);
+                                                                                                                                                                                                                    (pid[0], NULL, 0);
     }
     else
         return (ft_putendl_fd("Programe Run like this  ./pipex infile cmd1 cmd2 outfile", 2), 1); 
@@ -94,7 +94,5 @@ int main(int argc, char *argv[], char *envp[])
     while (path[++index])
         free(path[index]);
     free(path);
-    
-    while (1);
     return (0); 
 }
