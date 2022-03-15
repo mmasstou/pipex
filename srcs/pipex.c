@@ -26,6 +26,7 @@ int main(int argc, char *argv[], char *envp[])
             }
             index++;
         }
+        // get_cmds(path, envp);
         open_fd(&fd[0], argv[1], O_RDONLY );
         open_fd(&fd[1], argv[4], O_CREAT | O_WRONLY | O_TRUNC);
 
@@ -34,7 +35,7 @@ int main(int argc, char *argv[], char *envp[])
         
         if ((pid[0] = fork()) < 0)
             return (ft_putendl_fd("Fork failure", 2), 1);
-        
+        str = NULL;
         if (pid[0] == 0)
         {
             dup2(fd[0], 0);
@@ -52,6 +53,12 @@ int main(int argc, char *argv[], char *envp[])
                 if (access_result == 0)
                     execve(str,cmd, envp);
             }
+            if (access_result != 0)
+            {
+                ft_putstr_fd(argv[2], 2);
+                return (ft_putendl_fd(" :cmd Not Found !", 2), 1);
+            }
+
             index = -1;
             while (cmd[++index])
                 free(cmd[index]);
@@ -77,6 +84,11 @@ int main(int argc, char *argv[], char *envp[])
                 if (access_result == 0)
                     execve(str,cmd, envp);
             }
+            if (access_result != 0)
+            {
+                ft_putstr_fd(argv[3], 2);
+                return (ft_putendl_fd(" :cmd Not Found !", 2), 1);
+            }
             index = -1;
             while (cmd[++index])
                 free(cmd[index]);
@@ -86,13 +98,14 @@ int main(int argc, char *argv[], char *envp[])
 
         close(pipid[0]);
         close(pipid[1]);
-                                                                                                                                                                                                                    (pid[0], NULL, 0);
+        waitpid(pid[0], NULL, 0);
     }
     else
         return (ft_putendl_fd("Programe Run like this  ./pipex infile cmd1 cmd2 outfile", 2), 1); 
     index = -1;
-    while (path[++index])
-        free(path[index]);
+    // while (path[++index])
+    //     free(path[index]);
     free(path);
+    // while(1);
     return (0); 
 }

@@ -17,6 +17,7 @@ typedef struct pipeid
 
 // open Function
 int open_fd(int *index, char *filename, int type);
+void    get_cmds(char *path[], char *envp[]);
 
 int    get_cmd_path(char **path, char *env[]);
 char    *get_commend(char **in_cmd, char **path);
