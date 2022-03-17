@@ -42,6 +42,7 @@ int     find_cmd_utils(char *argv, char **path, char *envp[]);
 void    ft_fork(int id);
 // Errors
 int open_error(char *msg);
+void    pipex_error(char *msg);
 
 // free
 void    free_path(char **path);

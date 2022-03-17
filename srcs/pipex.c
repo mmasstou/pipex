@@ -30,6 +30,6 @@ int main(int argc, char *argv[], char *envp[])
     }
     else
         return (ft_putendl_fd("Programe Run like this  ./pipex infile cmd1 cmd2 outfile", 2), 1); 
-    while(1);
+    // while(1);
     return (0); 
 }

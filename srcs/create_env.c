@@ -8,7 +8,7 @@ t_pipe    *create_env(char *infile, char *outfile)
     pepex = (t_pipe *)malloc(sizeof(t_pipe));
     pepex->fd = (t_fd *)malloc(sizeof(t_fd));
     if (!pepex || !pepex->fd)
-        ft_error("malloc error !");
+        pipex_error("malloc error !");
     str = ft_strjoin("no such file or directory: ", infile);
     pepex->fd->in = open(infile, O_RDONLY);
     if (pepex->fd->in < 0)
@@ -20,6 +20,6 @@ t_pipe    *create_env(char *infile, char *outfile)
         open_error(str);
     free(str);
     if (pipe(pepex->pipe) > 0)
-        ft_error("pipe Not Create succuss");
+        pipex_error("pipe Not Create succuss");
     return (pepex);
 }
