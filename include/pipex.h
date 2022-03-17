@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 13:22:59 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/17 17:41:28 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/17 17:45:59 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ char	**get_path(char **envp);
 void	child_process_in(t_pipe *ids, char **path, char **envp, char *argv);
 void	child_process_out(t_pipe *ids, char **path, char **envp, char *argv);
 t_pipe	*create_env(char *infile, char *outfile);
-char	*get_commend(char **in_cmd, char **path);
 char	**get_cmd_flag(char *str);
 int		ft_fork(void);
 // Errors
