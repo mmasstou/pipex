@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_file.c                                        :+:      :+:    :+:   */
+/*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 16:39:32 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/17 16:40:19 by mmasstou         ###   ########.fr       */
+/*   Created: 2022/03/17 16:37:44 by mmasstou          #+#    #+#             */
+/*   Updated: 2022/03/17 16:39:06 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-int	open_fd(int *index, char *filename, int type)
+char	**get_path(char **envp)
 {
+	int		index;
 	char	*str;
+	char	**path;
 
+	index = 0;
 	str = NULL;
-	*index = open(filename, type, 0777);
-	if (*index < 0)
+	path = NULL;
+	while (envp[index])
 	{
-		str = ft_strjoin("no such file or directory: ", filename);
-		open_error(str);
+		if (ft_strnstr(envp[index], "PATH=/", ft_strlen("PATH=/")) != 0)
+		{
+			str = ft_strtrim(envp[index], "PATH=");
+			path = ft_split(str, ':');
+			free(str);
+			break ;
+		}
+		index++;
 	}
-	return (SUCCESS);
+	if (path[0] == NULL)
+	{
+		ft_putendl_fd("FAILURE Failure to Found PATH !", 2);
+		exit (1);
+	}
+	return (path);
 }

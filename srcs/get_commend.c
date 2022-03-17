@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_file.c                                        :+:      :+:    :+:   */
+/*   get_commend.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 16:39:32 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/17 16:40:19 by mmasstou         ###   ########.fr       */
+/*   Created: 2022/03/17 16:36:10 by mmasstou          #+#    #+#             */
+/*   Updated: 2022/03/17 16:36:59 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-int	open_fd(int *index, char *filename, int type)
+char	*get_commend(char **in_cmd, char **path)
 {
-	char	*str;
+	char	*cmd;
+	int		index;
+	int		access_result;
 
-	str = NULL;
-	*index = open(filename, type, 0777);
-	if (*index < 0)
+	index = -1;
+	while (path[++index])
 	{
-		str = ft_strjoin("no such file or directory: ", filename);
-		open_error(str);
+		cmd = ft_strjoin(path[index], "/");
+		cmd = ft_strjoin(cmd, in_cmd[0]);
+		access_result = access(cmd, X_OK);
+		if (access_result == 0)
+			return (ft_strdup(cmd));
 	}
-	return (SUCCESS);
+	return (NULL);
+}
+
+char	**get_cmd_flag(char *str)
+{
+	return (ft_split(str, ' '));
 }

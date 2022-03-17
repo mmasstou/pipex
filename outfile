@@ -1,2 +1,6 @@
-int main(int argc, char *argv[], char *envp[])
-    char    **path;
+	pepex->fd = (t_fd *)malloc(sizeof(t_fd));
+	if (!pepex || !pepex->fd)
+	pepex->fd->in = open(infile, O_RDONLY);
+	if (pepex->fd->in < 0)
+	pepex->fd->out = open(outfile, O_CREAT | O_WRONLY | O_TRUNC, 0777);
+	if (pepex->fd->out < 0)
