@@ -7,9 +7,9 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug",
+            "name": "Db Pipex",
             "program": "${workspaceFolder}/pipex",
-            "args": ["infile", "ls -al", "wc -l", "outfile"],
+            "args": ["srcs/pipex.c", "/bin/cat", "grep char", "outfile"],
             "cwd": "${workspaceFolder}"
         }
     ]

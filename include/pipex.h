@@ -8,18 +8,33 @@
 
 # define SUCCESS 0
 # define FAILURE 1
-typedef struct pipeid
+typedef struct s_fd
 {
     int in; // 0
     int out; // 1
 
+}   t_fd;
+
+typedef struct s_pipeid
+{
+    int pipe; // 0
+
 }   t_pipeid;
 
-// open Function
-int open_fd(int *index, char *filename, int type);
-void    get_cmds(char *path[], char *envp[]);
+typedef struct s_pipe
+{
+    t_fd *fd;
+    pid_t pipe[2];
+    int forkid;
 
-int    get_cmd_path(char **path, char *env[]);
+}   t_pipe;
+// open Function
+int     open_fd(int *index, char *filename, int type);
+char    **get_cmds(char **envp);
+void    child_process_in(t_pipe *ids, char **path, char **envp, char *argv);
+void    child_process_out(t_pipe *ids, char **path, char **envp, char *argv);
+t_pipe    *create_env(char *infile, char *outfile);
+// int    get_cmd_path(char **path, char *env[]);
 char    *get_commend(char **in_cmd, char **path);
 char	**get_cmd_flag(char *str);
 int     redirection_fd(int pipid[2], int fileid, int fd);
@@ -28,4 +43,6 @@ void    ft_fork(int id);
 // Errors
 int open_error(char *msg);
 
+// free
+void    free_path(char **path);
 #endif

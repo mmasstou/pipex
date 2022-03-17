@@ -35,30 +35,6 @@ int     find_cmd_utils(char *argv, char **path, char *envp[])
     return (0);
 }
 
-/**
- * @brief Get the cmd path object
- * 
- * @param path tab double dementionnel for all my path
- * @param envp 
- * @return ** int 
- */
-int    get_cmd_path(char **path, char *envp[])
-{
-    int index;
-
-    index = 0;
-    while (envp[index])
-    {
-        if (ft_strnstr(envp[index],"PATH=/", ft_strlen("PATH=/")) != 0)
-        {
-            path = ft_split(ft_strtrim(envp[index],"PATH="),':');
-            return (0);
-        }
-        index++;
-    }
-    return (1);
-}
-
 void    ft_fork(int id)
 {
     id = fork();
