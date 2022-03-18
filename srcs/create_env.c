@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 16:26:33 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/17 16:27:25 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/18 21:26:49 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_pipe	*create_env(char *infile, char *outfile)
 	if (!pepex || !pepex->fd)
 		pipex_error("malloc error !");
 	str = ft_strjoin("no such file or directory: ", infile);
-	pepex->fd->in = open(infile, O_RDONLY);
+	pepex->fd->in = open(infile, O_RDONLY |  O_TRUNC);
 	if (pepex->fd->in < 0)
 		open_error(str);
 	free(str);
@@ -31,7 +31,7 @@ t_pipe	*create_env(char *infile, char *outfile)
 	if (pepex->fd->out < 0)
 		open_error(str);
 	free(str);
-	if (pipe(pepex->pipe) > 0)
+	if (pipe(pepex->pipe) < 0)
 		pipex_error("pipe Not Create succuss");
 	return (pepex);
 }

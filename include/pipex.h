@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 13:22:59 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/17 17:45:59 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/18 21:21:54 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_pipe
 	t_fd	*fd;
 	pid_t	pipe[2];
 	int		forkid;
+	pid_t	hd_pip[2];
 }	t_pipe;
 
 // open Function

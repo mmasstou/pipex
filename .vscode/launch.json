@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Db Pipex",
             "program": "${workspaceFolder}/pipex",
-            "args": ["srcs/pipex.c", "/bin/cat", "grep char", "outfile"],
+            "args": ["here_doc", "LIMITER",  "ls", "wc -l", "grep ", "outfile"],
             "cwd": "${workspaceFolder}"
         }
     ]
