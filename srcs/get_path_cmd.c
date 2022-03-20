@@ -1,9 +1,8 @@
 #include "../include/pipex_bonus.h"
 
-char	**get_path_cmd(int argc, char **argv, char **path)
+t_commends	**get_path_cmd(int argc, char **argv, char **path, int incmd)
 {
-	char	**commends;
-	char	**cmd;
+	t_commends	**commends;
 	int		index;
 	int		jndex;
 	int		i;
@@ -11,18 +10,20 @@ char	**get_path_cmd(int argc, char **argv, char **path)
 
 	j = 0;
 	index = 0;
-	jndex = 3;
-	commends = (char **)malloc(sizeof(char *) + 1);
-
+	jndex = incmd;
+	commends = (t_commends	**)malloc(sizeof(t_commends	*) * (argc - (1 + incmd) + 1));
+	while (j < argc - (1 + incmd))
+		commends[j++] = (t_commends *)malloc(sizeof(t_commends));
+	j = 0;
 	while (argv[jndex] && jndex < argc - 1)
 	{
-		cmd = ft_split(argv[jndex], ' ');
+		commends[j]->cmd = ft_split(argv[jndex], ' ');
 		index = 0;
 		while(path[index])
 		{
-			commends[j] = ft_strjoin(path[index], "/");
-			commends[j] = ft_strjoin(commends[j], cmd[0]);
-			i = access(commends[j], X_OK);
+			commends[j]->path = ft_strjoin(path[index], "/");
+			commends[j]->path = ft_strjoin(commends[j]->path, commends[j]->cmd[0]);
+			i = access(commends[j]->path, X_OK);
 			if (i == 0)
 			{
 				j++;

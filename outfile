@@ -1,6 +1,0 @@
-int	execve_with_path(char *argv, char *envp[])
-	int		index;
-int	execve_with_cmd(char **path, char *argv, char *envp[])
-	int		index[2];
-	int	index[2];
-	int		index[2];
