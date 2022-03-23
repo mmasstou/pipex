@@ -19,6 +19,7 @@ $(NAME) : $(OBJS)
 bonus :
 	@gcc -Wall -Wextra -Werror ${LIBFT} $(SRCS_BONUS) $(GET_NEXT_LINE) -o $(NAME) -g
 	@echo "\033[38;5;16m   +> pipex Bonus \033[0m\033[38;5;42m [Done] \033[0m";
+	rm -rf outfile
 clean: 
 	rm -f $(OBJS) $(OBJS_BONUS)
 fclean : clean 

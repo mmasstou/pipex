@@ -17,6 +17,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 	int		index;
 	int		jndex;
+	int		j;
 
 
 	cmds = (t_commends	**)malloc(sizeof(t_commends	*));
@@ -29,7 +30,7 @@ int	main(int argc, char *argv[], char *envp[])
 	{
 		paths = get_path(envp);
 		ids->fd->in = open(argv[1],O_RDONLY, 0777);
-		ids->fd->out = open(argv[argc - 1],O_CREAT | O_WRONLY | O_TRUNC, 0777);
+		ids->fd->out = open(argv[argc - 1],O_CREAT | O_WRONLY | O_TRUNC , 0777);
 		if (ids->fd->in < 0 || ids->fd->out < 0)
 			pipex_error("file not opened successful");
 		if (ft_strncmp(argv[1], "here_doc",8) == 0)
@@ -46,37 +47,37 @@ int	main(int argc, char *argv[], char *envp[])
 		}
 		else
 		{
-			jndex = -1;
+			jndex = 0;
 			cmds = get_path_cmd(argc, argv, paths, 2);
-			// dup2(ids->fd->in, 0);
-			while(cmds[++jndex])
+			j = 0;
+			while(cmds[jndex] != NULL)
 			{
-				if (pipe(ids->pipe) < 0)
-					pipex_error("pipe Not Create succuss");
+				pipe(ids->pipe);
+				if (ids->pipe < 0)
+					pipex_error("pipe error !");
 				ids->forkid = fork();
 				if (ids->forkid < 0)
-					pipex_error("Fork Not Work succuss");
-				// printf("cmds[%d]->path%s\n", jndex, cmds[jndex]->path);
-				// printf("cmds[%d]->cmd[0]%s\n", jndex, cmds[jndex]->cmd[0]);
-				// printf("cmds[%d]->cmd[1]%s\n", jndex, cmds[jndex]->cmd[1]);
+					pipex_error("fork error !");
 				if (ids->forkid == 0)
 				{
+					dup2(ids->fd->in, 0);
+					close(ids->fd->in);
 					dup2(ids->pipe[1], 1);
-					dup2(ids->pipe[0], 0);
-					close(ids->pipe[0]);
-					close(ids->pipe[1]);
-					printf("1 - cmds[%d]->path%s\n", jndex, cmds[jndex]->path);
-					printf("1 - cmds[%d]->cmd[0]%s\n", jndex, cmds[jndex]->cmd[0]);
-					printf("1 - cmds[%d]->cmd[1]%s\n", jndex, cmds[jndex]->cmd[1]);
-					// execve(cmds[jndex]->path, cmds[jndex]->cmd, envp);
-					exit(0);
+
+					if (jndex == argc - 4)
+					{
+						dup2(ids->fd->out, 1);
+						close(ids->fd->out);
+					}
+					execve(cmds[jndex]->path, cmds[jndex]->cmd, envp);
 				}
+				//close(ids->pipe[0]);
+				close(ids->pipe[1]);
+				ids->fd->in = ids->pipe[0];
 				waitpid(ids->forkid, NULL, 0);
+				jndex++;
 			}
-			dup2(ids->fd->out, ids->pipe[1]);
-			close(ids->pipe[0]);
-			close(ids->pipe[1]);
-			waitpid(ids->forkid, NULL, 0);
+			return (0);
 		}
 	}
 	else
