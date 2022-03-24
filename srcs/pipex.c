@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 16:41:11 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/24 08:25:25 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/24 12:51:36 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int	main(int argc, char *argv[], char *envp[])
 			waitpid(ids->forkid, NULL, 0);
 			jndex++;
 		}
+		free_path_cmd(cmds);
+		while(1);
 		return (0);
 	}
 	else
