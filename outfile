@@ -1,0 +1,2 @@
+					dup2(ids->fd->in, 0);
+						dup2(ids->fd->out, 1);

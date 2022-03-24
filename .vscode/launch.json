@@ -9,8 +9,8 @@
             "request": "launch",
             "name": "Db Pipex",
             "program": "${workspaceFolder}/pipex",
-            // "args": ["here_doc", "LIMITER",  "ls", "wc -l", "grep ", "outfile"],
-            "args": ["infile", "awk",  "ls", "wc -l", "grep ", "outfile"],
+            "args": ["here_doc", "LIMITER",  "cat","grep hello", "wc -w", "outfile"],
+            // "args": ["infile", "awk",  "ls", "wc -l", "grep ", "outfile"],
             "cwd": "${workspaceFolder}"
         }
     ]
