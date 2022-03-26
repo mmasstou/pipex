@@ -14,7 +14,18 @@ t_commends	**get_path_cmd(int argc, char **argv, char **path, int incmd)
 	jndex = incmd;
 	commends = (t_commends	**)malloc(sizeof(t_commends	*) * (argc - (1 + incmd) + 1));
 	while (j < argc - (1 + incmd))
-		commends[j++] = (t_commends *)malloc(sizeof(t_commends));
+	{
+		commends[j] = (t_commends *)malloc(sizeof(t_commends));
+		if (!commends[j])
+		{
+			while (commends[j])
+			{
+				free(commends[j]);
+				j--;
+			}
+		}
+		j++;
+	}
 	j = 0;
 	while (argv[jndex] && jndex < argc - 1)
 	{
@@ -24,7 +35,7 @@ t_commends	**get_path_cmd(int argc, char **argv, char **path, int incmd)
 		while(path[index])
 		{
 			commends[j]->path = ft_strjoin(path[index], "/");
-			commends[j]->path = ft_strjoin(commends[j]->path, commends[j]->cmd[0]);
+			commends[j]->path = re_join(commends[j]->path, commends[j]->cmd[0]);
 			i = access(commends[j]->path, X_OK);
 			if (i == 0)
 			{
@@ -32,10 +43,17 @@ t_commends	**get_path_cmd(int argc, char **argv, char **path, int incmd)
 				jndex++;
 				break;
 			}
+			else
+			{
+				free(commends[j]->path);
+			}
 			index++;
 		}
 		if (i != 0)
+		{
+			free_path_cmd(commends);
 			pipex_error("Commend not Found !");
+		}
 	}
 	commends[j] = NULL;
 	return (commends);

@@ -9,9 +9,9 @@
             "request": "launch",
             "name": "Db Pipex",
             "program": "${workspaceFolder}/pipex",
-            // "args": ["here_doc", "LIMITER",  "cat","grep hello", "wc -w", "outfile"],
+            "args": ["here_doc", "LIMITER",  "cat","grep hello", "wc -w", "outfile"],
             // "args": ["srcs/pipex_bonus.c", "cat",  "grep index", "grep int", "wc -l","outfile"],
-            "args": ["srcs/pipex_bonus.c", "cat",  "grep int", "outfile"],
+            // "args": ["srcs/pipex_bonus.c", "cat",  "grep int", "outfile"],
             "cwd": "${workspaceFolder}"
         }
     ]

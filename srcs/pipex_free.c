@@ -38,3 +38,8 @@ void	free_path_cmd(t_commends **cmds)
 	}
 	free(cmds);
 }
+void	free_ids(t_pipe	*ids)
+{
+	free(ids->fd);
+	free(ids);
+}

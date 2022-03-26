@@ -19,16 +19,17 @@ OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 	@${CC} ${CFLAGS} -I . -o $@ -c $<
 
 all: $(NAME)
-	@rm -rf $(LIBFT)
+
+
+$(LIBFT) :
 	@make -C libft
 	@cp ./libft/libft.a .
-	@make fclean -C libft
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) $(LIBFT)
 	@$(CC) $(CFLAGS) ${LIBFT}  $(SRCS_MANDATORY) $(SRCS) $(GET_NEXT_LINE) -o $(NAME) -g
 	@echo "\033[38;5;16m   +> pipex Mandatory \033[0m\033[38;5;42m [Done] \033[0m";
 
-bonus :
+bonus : $(LIBFT)
 	@$(CC) $(CFLAGS) ${LIBFT} $(SRCS_BONUS) $(SRCS) $(GET_NEXT_LINE) -o $(NAME) -g
 	@echo "\033[38;5;16m   +> pipex Bonus \033[0m\033[38;5;42m [Done] \033[0m";
 	@rm -rf outfile
@@ -37,6 +38,7 @@ clean:
 	@make clean -C ./libft
 fclean : clean 
 	@make fclean -C ./libft
+	@rm -f $(NAME) $(LIBFT) 
 
 re : fclean all
 	@make re -C ./libft/

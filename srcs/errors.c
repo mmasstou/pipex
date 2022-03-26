@@ -17,14 +17,25 @@ int	open_error(char *msg)
 	ft_putendl_fd(msg, 2);
 	exit(1);
 }
+char	*re_join(char *str1, char *str2)
+{
+	char	*s;
+
+	s = ft_strjoin(str1, str2);
+	free(str1);
+	return (s);
+}
 
 void	pipex_error(char *msg)
 {
 	char	*message;
 
 	message = ft_strjoin("\x1b[31m", msg);
-	message = ft_strjoin(message, "\x1b[0m");
+	message = re_join(message, "\x1b[0m");
 	ft_putendl_fd(message, 2);
 	free(message);
 	exit(1);
 }
+
+
+
