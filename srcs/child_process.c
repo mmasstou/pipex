@@ -49,9 +49,9 @@ void	child_process_in(t_pipe *ids, char **path, char **envp, char *argv)
 {
 	int	index[2];
 
-	dup2(ids->fd->in, 0);
+	dup2(ids->fd[0], 0);
 	dup2(ids->pipe[1], 1);
-	close(ids->fd->in);
+	close(ids->fd[0]);
 	close(ids->pipe[0]);
 	close(ids->pipe[1]);
 	if (argv[0] == '/')
@@ -71,8 +71,8 @@ void	child_process_out(t_pipe *ids, char **path, char **envp, char *argv)
 	int		index[2];
 
 	dup2(ids->pipe[0], 0);
-	dup2(ids->fd->out, 1);
-	close(ids->fd->out);
+	dup2(ids->fd[1], 1);
+	close(ids->fd[1]);
 	close(ids->pipe[0]);
 	close(ids->pipe[1]);
 	if (argv[0] == '/')

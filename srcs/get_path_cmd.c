@@ -1,14 +1,15 @@
 #include "../include/pipex_bonus.h"
 
-t_commends	**get_path_cmd(int argc, char **argv, char **path, int incmd)
+t_commends	**get_path_cmd(int argc, char **argv, char *envp[], int incmd)
 {
 	t_commends	**commends;
 	int		index;
 	int		jndex;
-	// char	*message;
+	char	**paths;
 	int		i;
 	int		j;
 
+	paths = get_path(envp);
 	j = 0;
 	index = 0;
 	jndex = incmd;
@@ -32,9 +33,9 @@ t_commends	**get_path_cmd(int argc, char **argv, char **path, int incmd)
 		// message = ft_strjoin(argv[jndex], " : Commend not Found !");
 		commends[j]->cmd = ft_split(argv[jndex], ' ');
 		index = 0;
-		while(path[index])
+		while(paths[index])
 		{
-			commends[j]->path = ft_strjoin(path[index], "/");
+			commends[j]->path = ft_strjoin(paths[index], "/");
 			commends[j]->path = re_join(commends[j]->path, commends[j]->cmd[0]);
 			i = access(commends[j]->path, X_OK);
 			if (i == 0)

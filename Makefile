@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -Werror
 GET_NEXT_LINE = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c 
 OBJS_GET_NEXT_LINE = $(GET_NEXT_LINE:.c=.o)
 
-SRCS =  srcs/pipex_utils.c srcs/open_file.c srcs/errors.c srcs/get_path.c srcs/child_process.c srcs/pipex_free.c srcs/create_env.c srcs/get_path_cmd.c
+SRCS = srcs/cmds_process.c srcs/pipex_bonus_utils.c srcs/open_file.c srcs/errors.c srcs/get_path.c srcs/child_process.c srcs/pipex_free.c srcs/create_env.c srcs/get_path_cmd.c
 OBJS = $(SRCS:.c=.o)
 
 SRCS_MANDATORY = srcs/pipex.c

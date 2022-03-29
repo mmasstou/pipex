@@ -28,7 +28,7 @@ typedef struct fd
 }	t_fd;
 typedef struct s_pipe
 {
-	t_fd	*fd;
+	int		fd[2];
 	pid_t	pipe[2];
 	int		forkid;
 	pid_t	hd_pip[2];
@@ -36,12 +36,24 @@ typedef struct s_pipe
 
 // open Function
 int		open_fd(int *index, char *filename, int type);
+void	open_outfile(t_pipe *ids, char *filename);
+void	open_infile(t_pipe *ids, char *filename);
+
+
 char	**get_path(char **envp);
 void	child_process_in(t_pipe *ids, char **path, char **envp, char *argv);
 void	child_process_out(t_pipe *ids, char **path, char **envp, char *argv);
 t_pipe	*create_env(char *infile, char *outfile);
 char	**get_cmd_flag(char *str);
-int		ft_fork(void);
+// pipex_utils
+void	ft_pipe(t_pipe *ids);
+void	ft_fork(t_pipe *ids);
+void	dup_close(int newfd, int oldfd);
+// here_doc
+int			here_doc(char **argv, t_pipe	*ids);
+void	here_doc_process(int argc, char *argv[], char *envp[], t_pipe *ids);
+void	cmds_process(int argc, t_commends **cmds, char *envp[], t_pipe *ids);
+
 // Errors
 int		open_error(char *msg);
 void	pipex_error(char *msg);

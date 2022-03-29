@@ -18,17 +18,16 @@ t_pipe	*create_env(char *infile, char *outfile)
 	t_pipe	*pepex;
 
 	pepex = (t_pipe *)malloc(sizeof(t_pipe));
-	pepex->fd = (t_fd *)malloc(sizeof(t_fd));
-	if (!pepex || !pepex->fd)
+	if (!pepex)
 		pipex_error("malloc error !");
 	str = ft_strjoin("no such file or directory: ", infile);
-	pepex->fd->in = open(infile, O_RDONLY |  O_TRUNC);
-	if (pepex->fd->in < 0)
+	pepex->fd[0] = open(infile, O_RDONLY |  O_TRUNC);
+	if (pepex->fd[0] < 0)
 		open_error(str);
 	free(str);
 	str = ft_strjoin("no such file or directory: ", outfile);
-	pepex->fd->out = open(outfile, O_CREAT | O_WRONLY | O_TRUNC, 0777);
-	if (pepex->fd->out < 0)
+	pepex->fd[1] = open(outfile, O_CREAT | O_WRONLY | O_TRUNC, 0777);
+	if (pepex->fd[1] < 0)
 		open_error(str);
 	free(str);
 	if (pipe(pepex->pipe) < 0)
