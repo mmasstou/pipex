@@ -6,18 +6,13 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 16:41:11 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/29 18:54:06 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/29 20:39:28 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 #include "../include/pipex_bonus.h"
 
-/**
- * ! fd[0] --> pipe
- * ! fd[1] --> fork
- * ! fd[2] --> in / out file 
- **/
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_pipe	*ids;
