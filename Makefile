@@ -26,22 +26,30 @@ $(LIBFT) :
 	@make -C libft
 	@cp ./libft/libft.a .
 
-$(NAME) : $(OBJS) $(LIBFT)
+$(NAME) : $(OBJS) $(LIBFT) $(OBJS_MANDATORY)
 	@$(CC) $(CFLAGS) ${LIBFT}  $(SRCS_MANDATORY) $(SRCS) $(GET_NEXT_LINE) -o $(NAME) -g
 	@echo "\033[38;5;16m   +> pipex Mandatory \033[0m\033[38;5;42m [Done] \033[0m";
 
-bonus : $(LIBFT)
+bonus : $(LIBFT) $(OBJS) $(OBJS_BONUS)
 	@$(CC) $(CFLAGS) ${LIBFT} $(SRCS_BONUS) $(SRCS) $(GET_NEXT_LINE) -o $(NAME) -g
 	@echo "\033[38;5;16m   +> pipex Bonus \033[0m\033[38;5;42m [Done] \033[0m";
 	
 
 push:fclean
 	@rm -rf outfile
-	git add .
-	read -p "Message:" message; \
+	@git add .
+	@read -p "Message:" message; \
 	git commit -m "$$message"; \
 	git push origin master
-	
+
+valgrind:fclean  bonus
+	@rm -rf outfile
+	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes ./pipex srcs/pipex_bonus.c cat "grep index"  "grep int" "wc -l"  outfile
+
+error:fclean bonus
+	@rm -rf outfile
+	@valgrind --leak-check=full --show-leak-kinds=all ./pipex srcs/pipex_bonus.c cat "grep index"  "grep int" "wc -l"  outfile
+
 clean: 
 	@rm -f $(OBJS) $(OBJS_BONUS)
 	@make clean -C ./libft
