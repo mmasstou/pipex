@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:38:29 by mmasstou          #+#    #+#             */
-/*   Updated: 2021/11/16 09:21:51 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/30 19:04:46 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int		ft_isprint(int p);
 // ft_str
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strcmp(const char *s1, const char *s2);
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 char	*ft_strnstr(const char *src, const char *to_find, size_t size);

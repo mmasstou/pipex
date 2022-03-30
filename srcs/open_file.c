@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 16:39:32 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/30 12:26:23 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:05:01 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ int	open_fd(int *index, char *filename, int type)
 		open_error(str);
 	}
 	return (SUCCESS);
+}
+
+void	open_outfile_heredoc(t_pipe *ids, char *filename)
+{
+	ids->fd[1] = open(filename, O_CREAT | O_WRONLY, 0777);
+	if (ids->fd[1] < 0)
+		pipex_error("outfile not opened successful");
 }
 
 void	open_outfile(t_pipe *ids, char *filename)

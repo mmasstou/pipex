@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 16:37:44 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/17 16:39:06 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/30 13:19:32 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,13 @@ char	**get_path(char **envp)
 	}
 	if (path[0] == NULL)
 	{
-		ft_putendl_fd("FAILURE Failure to Found PATH !", 2);
+		ft_putendl_fd("Failure to Found PATH !", 2);
+		index = 0;
+		while (path[index])
+		{
+			free(path[index]);
+			index++;
+		}
 		exit (1);
 	}
 	return (path);

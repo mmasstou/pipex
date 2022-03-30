@@ -6,7 +6,7 @@
 #    By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/06 15:54:55 by mmasstou          #+#    #+#              #
-#    Updated: 2022/02/24 10:58:11 by mmasstou         ###   ########.fr        #
+#    Updated: 2022/03/30 19:11:55 by mmasstou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS =	ft_isalnum.c \
 		ft_isprint.c \
 		ft_strlcat.c \
 		ft_strncmp.c \
+		ft_strcmp.c \
 		ft_strlen.c \
 		ft_strlcpy.c \
 		ft_strnstr.c \
@@ -75,6 +76,7 @@ bonus: $(B_OBJS) $(OBJS)
 	@echo "+- Libft \x1b[34m[done]\x1b[0m-+";
 %.o:%.c libft.h Makefile
 	@${CC} ${CFLAGS} -I . -o $@ -c $<
+	@printf "Compiling $< :\x1B[1;32m[ok]\x1B[0m \n"
 	
 clean:
 	@rm -f *.o

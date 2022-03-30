@@ -15,8 +15,9 @@ OBJS_MANDATORY = $(SRCS_BONUS:.c=.o)
 SRCS_BONUS = srcs/pipex_bonus.c srcs/here_doc.c 
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
-%.o:%.c pipex.h  pipex_bonus.h Makefile
-	@${CC} ${CFLAGS} -I . -o $@ -c $<
+%.o:%.c 
+	@${CC} ${CFLAGS} -c $<
+	@echo  Compiling $< :"\x1B[1;32m[ok]\x1B[0m"
 
 all: $(NAME)
 
@@ -32,7 +33,15 @@ $(NAME) : $(OBJS) $(LIBFT)
 bonus : $(LIBFT)
 	@$(CC) $(CFLAGS) ${LIBFT} $(SRCS_BONUS) $(SRCS) $(GET_NEXT_LINE) -o $(NAME) -g
 	@echo "\033[38;5;16m   +> pipex Bonus \033[0m\033[38;5;42m [Done] \033[0m";
+	
+
+push:fclean
 	@rm -rf outfile
+	git add .
+	read -p "Message:" message; \
+	git commit -m "$$message"; \
+	git push origin master
+	
 clean: 
 	@rm -f $(OBJS) $(OBJS_BONUS)
 	@make clean -C ./libft

@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:53:26 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/30 12:43:03 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/30 19:05:37 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char *argv[], char *envp[])
 		pipex_error("malloc error !");
 	if (argc >= 5)
 	{
-		if (ft_strncmp(argv[1], "here_doc", 8) == 0)
+		if (ft_strcmp(argv[1], "here_doc") == 0)
 			here_doc_process(argc, argv, envp, ids);
 		else
 		{

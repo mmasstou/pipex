@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 13:22:59 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/30 12:30:39 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:05:42 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_pipe
 // open Function
 int		open_fd(int *index, char *filename, int type);
 void	open_outfile(t_pipe *ids, char *filename);
+void	open_outfile_heredoc(t_pipe *ids, char *filename);
 void	open_infile(t_pipe *ids, char *filename);
 
 char	**get_path(char **envp);
