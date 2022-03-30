@@ -1,15 +1,1 @@
-#include "../include/pipex_bonus.h"$
 	ids = (t_pipe *)malloc(sizeof(t_pipe));$
-		pipex_error("malloc error !");$
-		if (ft_strncmp(argv[1], "here_doc",8) == 0)$
-			here_doc_process(argc, argv, envp, ids);$
-			cmds_process(argc, argv, envp, ids);$
-		// 	open_infile(ids, argv[1]);$
-		// 	open_outfile(ids, argv[argc - 1]);$
-		// 		ft_fork(ids);$
-		// 		if (ids->forkid == 0)$
-		// 			dup_close(ids->fd[0], 0);$
-		// 				dup_close(ids->fd[1], 1);$
-		// 		close(ids->pipe[1]);$
-		// 		waitpid(ids->forkid, NULL, 0);$
-		return (ft_putendl_fd("Programe Run like this  ./pipex infile cmd1 cmd2 outfile", 2), 1);$

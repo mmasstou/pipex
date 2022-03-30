@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 16:28:00 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/24 12:49:19 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/30 12:09:57 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	open_error(char *msg)
 	ft_putendl_fd(msg, 2);
 	exit(1);
 }
+
 char	*re_join(char *str1, char *str2)
 {
 	char	*s;
@@ -32,10 +33,7 @@ void	pipex_error(char *msg)
 
 	message = ft_strjoin("\x1b[31m", msg);
 	message = re_join(message, "\x1b[0m");
-	ft_putendl_fd(message, 2);
+	printf ("%s\n", message);
 	free(message);
 	exit(1);
 }
-
-
-

@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 13:22:59 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/18 21:21:54 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/30 12:30:39 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 
 # define SUCCESS 0
 # define FAILURE 1
+# define PATH_OK 0
+# define PATH_KO 1
+
+// colors
+# define C_SUCCESS "\033[38;5;42m"
+# define C_FAILURE "\x1b[31m"
+# define C_END "\x1b[0m"
 
 typedef struct fd
 {
@@ -39,20 +46,14 @@ int		open_fd(int *index, char *filename, int type);
 void	open_outfile(t_pipe *ids, char *filename);
 void	open_infile(t_pipe *ids, char *filename);
 
-
 char	**get_path(char **envp);
 void	child_process_in(t_pipe *ids, char **path, char **envp, char *argv);
 void	child_process_out(t_pipe *ids, char **path, char **envp, char *argv);
-t_pipe	*create_env(char *infile, char *outfile);
 char	**get_cmd_flag(char *str);
 // pipex_utils
 void	ft_pipe(t_pipe *ids);
 void	ft_fork(t_pipe *ids);
 void	dup_close(int newfd, int oldfd);
-// here_doc
-int			here_doc(char **argv, t_pipe	*ids);
-void	here_doc_process(int argc, char *argv[], char *envp[], t_pipe *ids);
-void	cmds_process(int argc, t_commends **cmds, char *envp[], t_pipe *ids);
 
 // Errors
 int		open_error(char *msg);

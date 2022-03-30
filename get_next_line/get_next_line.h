@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 15:36:58 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/18 14:39:33 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/30 12:34:37 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
-# define BUFFER_SIZE 1 
+# define BUFFER_SIZE 1
+
 char	*get_next_line(int fd);
 char	*read_file(char *buffer_static, int fd);
 char	*get_line(char *buffer_static);

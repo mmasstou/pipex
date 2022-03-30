@@ -6,18 +6,18 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:53:15 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/29 15:54:31 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/30 12:33:37 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
 
-void	cmds_process(int argc, t_commends **cmds, char *envp[], t_pipe *ids)
+void	cmds_process(int argc, t_cmds **cmds, char *envp[], t_pipe *ids)
 {
 	int	jndex;
 
 	jndex = 0;
-	while(cmds[jndex] != NULL)
+	while (cmds[jndex] != NULL)
 	{
 		ft_pipe(ids);
 		ft_fork(ids);
