@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:53:26 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/30 19:05:37 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:43:25 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, char *argv[], char *envp[])
 	t_pipe	*ids;
 	t_cmds	**cmds;
 
+	cmds = NULL;
 	ids = (t_pipe *)malloc(sizeof(t_pipe));
 	if (!ids)
 		pipex_error("malloc error !");
@@ -31,7 +32,10 @@ int	main(int argc, char *argv[], char *envp[])
 			open_outfile(ids, argv[argc - 1]);
 			cmds = get_path_cmd(argc, argv, envp, 2);
 			cmds_process(argc, cmds, envp, ids);
+			free_path_cmd(cmds);
 		}
+		free(ids);
+		
 	}
 	else
 		open_error("syntax error : ./pipex infile cmd1 cmd2 ... outfile");

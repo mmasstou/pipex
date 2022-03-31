@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 12:09:00 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/30 18:40:38 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/31 13:57:18 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 void	commend_find_successfull(t_cmds *cmds, int status)
 {
+	char	*str;
+	
+	str = ft_strjoin("\x1b[36m[",cmds->path);
+	str = re_join(str,"]\x1b[0m");
 	if (status == PATH_OK)
-		printf("%s[%s]%s\n", cmds->cmd[0],cmds->path, "\033[38;5;42m OK\033[0m");
+		printf("\033[38;5;16m   +> \033[0m%-7s%-27s%s\n", cmds->cmd[0],str, "\033[38;5;42m OK\033[0m");
 	if (status == PATH_KO)
-		printf("%s[%s]%s\t", cmds->cmd[0],cmds->path, "\x1b[31m KO \x1b[0m");
+		printf(" +> %-5s%-18s%s\t", cmds->cmd[0],str, "\x1b[31m KO \x1b[0m");
+	free(str);
 }
 
 void	find_path(t_cmds **commends, char **paths, int *j, int *incmd)
@@ -37,6 +42,8 @@ void	find_path(t_cmds **commends, char **paths, int *j, int *incmd)
 			(*incmd)++;
 			break ;
 		}
+		else
+			free(commends[*j]->path);
 	}
 	if (i != 0)
 	{
@@ -67,6 +74,7 @@ t_cmds	**get_path_cmd(int argc, char **argv, char *envp[], int incmd)
 		find_path(commends, paths, &j, &incmd);
 		j++;
 	}
+	free_path(paths);
 	commends[j] = NULL;
 	return (commends);
 }

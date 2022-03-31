@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 12:23:20 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/30 17:07:57 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:08:38 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,10 @@ void	here_doc_process(int argc, char *argv[], char *envp[], t_pipe *ids)
 	t_cmds	**cmds;
 
 	here_doc(argv, ids);
-	open_outfile_heredoc(ids, argv[argc - 1]);
 	cmds = get_path_cmd(argc, argv, envp, 3);
+	open_outfile_heredoc(ids, argv[argc - 1]);
 	execve_cmd(argc, envp, ids, cmds);
+	free_path_cmd(cmds);
 	close(ids->hd_pip[0]);
 	close(ids->hd_pip[1]);
 }

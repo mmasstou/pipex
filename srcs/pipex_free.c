@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 17:14:32 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/30 16:52:22 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:06:47 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ void	free_path_cmd(t_cmds **cmds)
 		free(cmds[jndex]->path);
 		free(cmds[jndex]->cmd[0]);
 		if (cmds[jndex]->cmd[1] != NULL)
+		{
 			free(cmds[jndex]->cmd[1]);
+			if (cmds[jndex]->cmd[2] != NULL)
+				free(cmds[jndex]->cmd[2]);	
+		}
 		free(cmds[jndex]->cmd);
 		free(cmds[jndex]);
 		jndex++;
@@ -43,6 +47,5 @@ void	free_path_cmd(t_cmds **cmds)
 
 void	free_ids(t_pipe	*ids)
 {
-	free(ids->fd);
 	free(ids);
 }
