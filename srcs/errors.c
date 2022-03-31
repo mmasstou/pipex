@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 16:28:00 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/31 16:47:13 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/31 19:23:44 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,18 @@ void	pipex_error(char *msg)
 	message = re_join(message, "\x1b[0m");
 	printf ("%s\n", message);
 	free(message);
-	system("leaks pipex");
+	exit(1);
+}
+
+void	pipex_error_free(char *msg)
+{
+	char	*message;
+
+	message = ft_strjoin("\x1b[31m", msg);
+	message = re_join(message, "\x1b[0m");
+	printf ("%s\n", message);
+	free(message);
+	free(msg);
 	exit(1);
 }
 

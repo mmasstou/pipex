@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 16:39:32 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/31 17:03:24 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/31 19:24:47 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,36 @@ int	open_fd(int *index, char *filename, int type)
 
 void	open_outfile_heredoc(t_pipe *ids, char *filename)
 {
+	char	*str;
+
 	ids->fd[1] = open(filename, O_CREAT | O_WRONLY | O_APPEND, 0777);
 	if (ids->fd[1] < 0)
-		pipex_error("outfile not opened successful");
+	{
+		str = ft_strjoin(filename,": No such file or directory");
+		pipex_error_free(str);
+	}
 }
 
 void	open_outfile(t_pipe *ids, char *filename)
 {
+	char	*str;
+
 	ids->fd[1] = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	if (ids->fd[1] < 0)
-		pipex_error("outfile not opened successful");
+	{
+		str = ft_strjoin(filename,": No such file or directory");
+		pipex_error_free(str);
+	}
 }
 
 void	open_infile(t_pipe *ids, char *filename)
 {
+	char	*str;
+
 	ids->fd[0] = open(filename, O_RDONLY, 0777);
 	if (ids->fd[0] < 0)
-		pipex_error("infile not opened successful");
+	{
+		str = ft_strjoin(filename,": No such file or directory");
+		pipex_error_free(str);
+	}
 }

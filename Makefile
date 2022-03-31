@@ -10,26 +10,26 @@ SRCS = srcs/cmds_process.c srcs/pipex_bonus_utils.c srcs/open_file.c srcs/errors
 OBJS = $(SRCS:.c=.o)
 
 SRCS_MANDATORY = srcs/pipex.c
-OBJS_MANDATORY = $(SRCS_BONUS:.c=.o)
+OBJS_MANDATORY = $(SRCS_MANDATORY:.c=.o)
 
 SRCS_BONUS = srcs/pipex_bonus.c srcs/here_doc.c 
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
-%.o:%.c ./include/pipex.h ./include/pipex_bonus.h 
-		@${CC} ${CFLAGS} -I . -o $@ -c $<
-		@printf "\033[38;5;16m   +>\033[0m compiling \033[38;5;42m$@ \033[0m\n"
+%.o:%.c
+	@${CC} ${CFLAGS} -I . -o $@ -c $<
+	@printf "\x1b[36m   +>\033[0m compiling \033[38;5;42m$< \033[0m\n"
 	
 
 all: _LIBFT $(NAME) 
 
 
 $(NAME) :  $(OBJS) $(OBJS_MANDATORY) $(OBJS_GET_NEXT_LINE)
-	@$(CC) $(CFLAGS) ${LIBFT}  $(SRCS_MANDATORY) $(SRCS) $(OBJS_GET_NEXT_LINE) -o $(NAME) -g
-	@echo "\033[38;5;16m   +> pipex Mandatory \033[0m\033[38;5;42m [Done] \033[0m";
+	@$(CC) $(CFLAGS) ${LIBFT}  $(OBJS_MANDATORY) $(OBJS) $(OBJS_GET_NEXT_LINE) -o $(NAME) -g
+	@echo "\x1b[36m   +> pipex Mandatory \033[0m\033[38;5;42m [Done] \033[0m";
 
-bonus :_LIBFT $(OBJS) $(OBJS_BONUS) $(OBJS_GET_NEXT_LINE)
+bonus : _LIBFT $(OBJS) $(OBJS_BONUS) $(OBJS_GET_NEXT_LINE)
 	@$(CC) $(CFLAGS) ${LIBFT} $(OBJS) $(OBJS_BONUS) $(OBJS_GET_NEXT_LINE) -o $(NAME) -g
-	@echo "\033[38;5;16m   +> pipex Bonus \033[0m\033[38;5;42m [Done] \033[0m";
+	@echo "\x1b[36m   +> pipex Bonus \033[0m\033[38;5;42m [Done] \033[0m";
 	
 _LIBFT : 
 	@make bonus -C libft
@@ -64,7 +64,7 @@ clean:
 fclean : clean 
 	@make fclean -C ./libft
 	@rm -f $(NAME) $(LIBFT) 
-	@echo "\033[38;5;16m   +> Clean $(NAME) \033[0m\033[38;5;42m [Done] \033[0m";
+	@echo "\x1b[36m   +> Clean $(NAME) \033[0m\033[38;5;42m [Done] \033[0m";
 
 re : fclean all
 	@make re -C ./libft/

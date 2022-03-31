@@ -6,7 +6,7 @@
 #    By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/06 15:54:55 by mmasstou          #+#    #+#              #
-#    Updated: 2022/03/31 16:50:45 by mmasstou         ###   ########.fr        #
+#    Updated: 2022/03/31 18:40:16 by mmasstou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,22 +69,22 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@ar rc $(NAME) $(OBJS)
-	@echo "\033[38;5;16m   +> LIBFT \033[0m\033[38;5;42m [Done] \033[0m";
+	@echo "\x1b[36m   +> LIBFT \033[0m\033[38;5;42m [Done] \033[0m";
 	
 bonus: $(B_OBJS) $(OBJS)
 	@ar rc $(NAME) $(OBJS) $(B_OBJS)
-	@echo "\033[38;5;16m   +> LIBFT \033[0m\033[38;5;42m [Done] \033[0m";
+	@echo "\x1b[36m   +> LIBFT \033[0m\033[38;5;42m [Done] \033[0m";
 	
 %.o:%.c libft.h 
 		@${CC} ${CFLAGS} -I . -o $@ -c $<
-		@printf "\033[38;5;16m   +>\033[0m compiling \033[38;5;42m$@ \033[0m\n"
+		@printf "\x1b[36m   +>\033[0m compiling \033[38;5;42m$< \033[0m\n"
 
 clean:
 	@rm -f *.o
 	
 fclean: clean
 	@rm -f $(NAME)
-	@echo "\033[38;5;16m   +> Clean LIBFT \033[0m\033[38;5;42m [Done] \033[0m";
+	@echo "\x1b[36m   +> Clean LIBFT \033[0m\033[38;5;42m [Done] \033[0m";
 
 re: fclean all
 

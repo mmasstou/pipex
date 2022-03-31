@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 12:09:00 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/31 13:57:18 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/31 19:16:16 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ void	commend_find_successfull(t_cmds *cmds, int status)
 {
 	char	*str;
 	
-	str = ft_strjoin("\x1b[36m[",cmds->path);
-	str = re_join(str,"]\x1b[0m");
+	
 	if (status == PATH_OK)
-		printf("\033[38;5;16m   +> \033[0m%-7s%-27s%s\n", cmds->cmd[0],str, "\033[38;5;42m OK\033[0m");
+	{
+		str = ft_strjoin("\x1b[36m[",cmds->path);
+		str = re_join(str,"]\x1b[0m");
+		printf("\x1b[36m   +> \033[0m%-22s%-32s%s\n", cmds->cmd[0],str, "\033[38;5;42m OK\033[0m");
+		free(str);
+	}
 	if (status == PATH_KO)
-		printf(" +> %-5s%-18s%s\t", cmds->cmd[0],str, "\x1b[31m KO \x1b[0m");
-	free(str);
+		printf("\x1b[36m   +> \033[0m%-22s%-32s%s\n", cmds->cmd[0],"\x1b[31mCommend not Found !\x1b[0m", "\x1b[31m KO \x1b[0m");
 }
 
 void	find_path(t_cmds **commends, char **paths, int *j, int *incmd)
@@ -48,7 +51,8 @@ void	find_path(t_cmds **commends, char **paths, int *j, int *incmd)
 	if (i != 0)
 	{
 		commend_find_successfull(commends[*j], PATH_KO);
-		pipex_error("Commend not Found !");
+		exit(EXIT_FAILURE);
+		// pipex_error("command not found");
 	}
 }
 

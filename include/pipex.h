@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 13:22:59 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/30 17:05:42 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/03/31 19:23:16 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	dup_close(int newfd, int oldfd);
 // Errors
 int		open_error(char *msg);
 void	pipex_error(char *msg);
+void	pipex_error_free(char *msg);
+
 // free
 void	free_path(char **path);
 #endif
