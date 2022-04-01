@@ -74,6 +74,9 @@ t_cmds	**get_path_cmd(int argc, char **argv, char *envp[], int incmd)
 		commends[j] = (t_cmds *)malloc(sizeof(t_cmds));
 		if (!commends[j])
 			pipex_error("malloc error !");
+		// pipex_error("Argemment emmty !");
+		if (argv[incmd][0] == '\0')
+			exit(1);
 		commends[j]->cmd = ft_split(argv[incmd], ' ');
 		find_path(commends, paths, &j, &incmd);
 		j++;

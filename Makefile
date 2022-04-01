@@ -32,7 +32,7 @@ bonus : _LIBFT $(OBJS) $(OBJS_BONUS) $(OBJS_GET_NEXT_LINE)
 	@echo "\x1b[36m   +> pipex Bonus \033[0m\033[38;5;42m [Done] \033[0m";
 	
 _LIBFT : 
-	@make bonus -C libft
+	@make -C libft
 	@cp ./libft/libft.a .
 
 push:fclean
