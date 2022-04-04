@@ -1,19 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/04 18:24:16 by mmasstou          #+#    #+#             */
+/*   Updated: 2022/04/04 18:25:07 by mmasstou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
-# include "libft.h"
-
-
+#include "libft.h"
 
 void	cheack_args(const char *format, t_printf *tab)
 {
 	if (format[tab->index] > '0' && format[tab->index] <= '9')
 	{
 		while (ft_isdigit(format[tab->index]))
-		{
-			// tab->iswidth = 1;
-			// tab->width = tab->width * 10 + format[tab->index] - 48;
-			// tab->index++;
 			get_value(&tab->iswidth, &tab->width, format, &tab->index);
-		}
 	}
 	if (format[tab->index] == '-')
 	{
@@ -25,19 +30,13 @@ void	cheack_args(const char *format, t_printf *tab)
 		tab->ispoint = 1;
 		tab->index++;
 		while (ft_isdigit(format[tab->index]))
-		{
-			// tab->isprecision = 1;
-			// tab->precision = tab->precision * 10 + format[tab->index] - 48;
-			// tab->index++;
 			get_value(&tab->isprecision, &tab->precision, format, &tab->index);
-
-		}
 	}
 }
 
 void	manage_format(t_printf *tab)
 {
-	char *str;
+	char	*str;
 	int		str_size;
 	int		w;
 
@@ -49,21 +48,16 @@ void	manage_format(t_printf *tab)
 		w = 0;
 	if (tab->isdash)
 	{
-		ft_putstr_fd(str,1);
+		ft_putstr_fd(str, 1);
 		while (w--)
-			ft_putchar_fd(' ',1);
-		tab->tl += ft_strlen(str);
-		tab->tl += w;
+			ft_putchar_fd(' ', 1);
 	}
 	else if (!tab->isdash)
 	{
 		while (w--)
-			ft_putchar_fd(' ',1);
-		ft_putstr_fd(str,1);
-		tab->tl += ft_strlen(str);
-		tab->tl += w;
+			ft_putchar_fd(' ', 1);
+		ft_putstr_fd(str, 1);
 	}
-
 }
 
 void	ft_cheack_format(t_printf *tab, const char *format)
@@ -79,7 +73,7 @@ int	ft_printf(const char *format, ...)
 {
 	int			ret;
 	t_printf	*tab;
-	
+
 	tab = (t_printf *)malloc(sizeof(t_printf));
 	if (!tab)
 		exit (1);

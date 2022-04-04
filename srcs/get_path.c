@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 16:37:44 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/30 13:19:32 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/04/04 22:50:51 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,14 @@ char	**get_path(char **envp)
 	index = 0;
 	str = NULL;
 	path = NULL;
+	if (!envp)
+	{
+		ft_putendl_fd("Failure to Found Env !", 2);
+		exit (1);
+	}
 	while (envp[index])
 	{
+		
 		if (ft_strnstr(envp[index], "PATH=/", ft_strlen("PATH=/")) != 0)
 		{
 			str = ft_strtrim(envp[index], "PATH=");
@@ -32,15 +38,9 @@ char	**get_path(char **envp)
 		}
 		index++;
 	}
-	if (path[0] == NULL)
+	if (!path)
 	{
 		ft_putendl_fd("Failure to Found PATH !", 2);
-		index = 0;
-		while (path[index])
-		{
-			free(path[index]);
-			index++;
-		}
 		exit (1);
 	}
 	return (path);
