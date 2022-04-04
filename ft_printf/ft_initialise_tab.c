@@ -15,18 +15,9 @@
 t_printf	*ft_initialise_tab(t_printf *tab)
 {
 	tab->tl = 0;
-	tab->plus = 0;
-	tab->_rep->plus = 0;
-	tab->perc = 0;
-	tab->_rep->perc = 0;
-	tab->space = 0;
-	tab->_rep->space = 0;
-	tab->shrap = 0;
-	tab->_rep->shrap = 0;
+
 	tab->is_flag = 0;
 	tab->_rep->flags = 0;
-	tab->zero = 0;
-	tab->_rep->zero = 0;
 	tab->dash = 0;
 	tab->_rep->dash = 0;
 	tab->pnt = 0;

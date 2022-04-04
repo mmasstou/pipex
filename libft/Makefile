@@ -14,6 +14,7 @@ NAME 		= libft.a
 CFLAGS 		= -Wall -Wextra -Werror 
 CC = cc
 SRCS =	ft_isalnum.c \
+		ft_si_in.c \
 		ft_isalpha.c \
 		ft_isascii.c \
 		ft_isdigit.c \
@@ -48,6 +49,8 @@ SRCS =	ft_isalnum.c \
 		ft_strmapi.c \
 		ft_itoa.c \
 		ft_split.c \
+		ft_printf.c \
+		ft_printf_utils.c \
 
 BONUS = \
 		ft_lstnew.c \

@@ -21,11 +21,11 @@ void	commend_find_successfull(t_cmds *cmds, int status)
 	{
 		str = ft_strjoin("\x1b[36m[",cmds->path);
 		str = re_join(str,"]\x1b[0m");
-		printf("\x1b[36m   +> \033[0m%-22s%-32s%s\n", cmds->cmd[0],str, "\033[38;5;42m OK\033[0m");
+		ft_printf("\x1b[36m   +> \033[0m%-22s%-32s%s\n", cmds->cmd[0],str, "\033[38;5;42m OK\033[0m");
 		free(str);
 	}
 	if (status == PATH_KO)
-		printf("\x1b[36m   +> \033[0m%-22s%-32s%s\n", cmds->cmd[0],"\x1b[31mCommend not Found !\x1b[0m", "\x1b[31m KO \x1b[0m");
+		ft_printf("\x1b[36m   +> \033[0m%-22s%-32s%s\n", cmds->cmd[0],"\x1b[31mCommend not Found !\x1b[0m", "\x1b[31m KO \x1b[0m");
 }
 
 void	find_path(t_cmds **commends, char **paths, int *j, int *incmd)
@@ -75,8 +75,11 @@ t_cmds	**get_path_cmd(int argc, char **argv, char *envp[], int incmd)
 		if (!commends[j])
 			pipex_error("malloc error !");
 		// pipex_error("Argemment emmty !");
-		if (argv[incmd][0] == '\0')
-			exit(1);
+		if (ft_strtrim(argv[incmd], " ")[0] == '\0')
+		{
+			ft_printf("\x1b[36m   +> \033[0m%-22s%-32s%s\n", argv[incmd],"\x1b[31mCommend not Found !\x1b[0m", "\x1b[31m KO \x1b[0m");
+			exit(EXIT_FAILURE);
+		}
 		commends[j]->cmd = ft_split(argv[incmd], ' ');
 		find_path(commends, paths, &j, &incmd);
 		j++;
