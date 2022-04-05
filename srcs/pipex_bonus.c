@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:53:26 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/04/05 14:09:46 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:48:17 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int argc, char *argv[], char *envp[])
 			free_path_cmd(cmds);
 		}
 		free(ids);
+		system("leaks pipex");
 	}
 	else
 		open_error("syntax error : ./pipex infile cmd1 cmd2 ... outfile");

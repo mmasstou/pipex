@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 12:27:14 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/04/05 14:05:14 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:47:32 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int	cheack_abs_path(t_cmds **commends, char *path, int *j, int *incmd)
 		commends[*j]->cmd = ft_split(str[m], '/');
 		commends[*j]->cmd[1] = NULL;
 		commend_find_successfull(commends[*j], PATH_OK);
-		free(str);
-		free(path);
 		(*j)++;
 		(*incmd)++;
 		return (0);
