@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 16:28:00 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/31 19:23:44 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/04/05 12:19:11 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,3 @@ void	pipex_error_free(char *msg)
 	free(msg);
 	exit(1);
 }
-

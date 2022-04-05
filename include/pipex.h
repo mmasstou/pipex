@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 13:22:59 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/31 19:23:16 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/04/05 12:35:23 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 // colors
 # define C_SUCCESS "\033[38;5;42m"
-# define C_FAILURE "\x1b[31m"
+# define C_F "\x1b[36m   +> \033[0m"
 # define C_END "\x1b[0m"
 
 typedef struct fd
@@ -63,4 +63,6 @@ void	pipex_error_free(char *msg);
 
 // free
 void	free_path(char **path);
+
+// messages
 #endif

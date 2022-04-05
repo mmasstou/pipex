@@ -6,47 +6,32 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 12:09:00 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/31 19:16:16 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:04:39 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
 
-void	commend_find_successfull(t_cmds *cmds, int status)
+static t_cmds	*allocate_cmds(t_cmds	*commends)
 {
-	char	*str;
-	
-	
-	if (status == PATH_OK)
-	{
-		str = ft_strjoin("\x1b[36m[",cmds->path);
-		str = re_join(str,"]\x1b[0m");
-		ft_printf("\x1b[36m   +> \033[0m%-22s%-32s%s\n", cmds->cmd[0],str, "\033[38;5;42m OK\033[0m");
-		free(str);
-	}
-	if (status == PATH_KO)
-		ft_printf("\x1b[36m   +> \033[0m%-22s%-32s%s\n", cmds->cmd[0],"\x1b[31mCommend not Found !\x1b[0m", "\x1b[31m KO \x1b[0m");
+	commends = (t_cmds *)malloc(sizeof(t_cmds));
+	if (!commends)
+		pipex_error("malloc error !");
+	return (commends);
 }
-static int cheack_abs_path(t_cmds	**commends, char *path,int j)
-{
-	char	**str;
-	int 	i;
-	int m = -1;
 
-	i = access(path, X_OK);
-	if (i == 0)
-	{
-		commends[j]->path = ft_strdup(path);
-		str = ft_split(path,'/');
-		while (str[++m]);
-		m--;
-		commends[j]->cmd = ft_split(str[m], '/');
-		commends[j]->cmd[1] = NULL;
-		commend_find_successfull(commends[j],PATH_OK);
-		return (0);
-	}
-	return (-1);
+static t_cmds	**creat_env_cmds(int *j, int *jndex, int incmd, int argc)
+{
+	t_cmds	**commends;
+
+	*j = 0;
+	*jndex = argc - (1 + incmd);
+	commends = (t_cmds **)malloc(sizeof(t_cmds *) * (*jndex + 1));
+	if (!commends)
+		pipex_error("malloc error !");
+	return (commends);
 }
+
 void	find_path(t_cmds **commends, char **paths, int *j, int *incmd)
 {
 	int	index;
@@ -71,7 +56,6 @@ void	find_path(t_cmds **commends, char **paths, int *j, int *incmd)
 	{
 		commend_find_successfull(commends[*j], PATH_KO);
 		exit(EXIT_FAILURE);
-		// pipex_error("command not found");
 	}
 }
 
@@ -81,32 +65,21 @@ t_cmds	**get_path_cmd(int argc, char **argv, char *envp[], int incmd)
 	int		jndex;
 	char	**paths;
 	int		j;
+	char	*str;
 
 	paths = get_path(envp);
-	j = 0;
-	jndex = argc - (1 + incmd);
-	commends = (t_cmds **)malloc(sizeof(t_cmds *) * (jndex + 1));
-	if (!commends)
-		pipex_error("malloc error !");
+	commends = creat_env_cmds(&j, &jndex, incmd, argc);
 	while (j < jndex)
 	{
-		commends[j] = (t_cmds *)malloc(sizeof(t_cmds));
-		if (!commends[j])
-			pipex_error("malloc error !");
-		// pipex_error("Argemment emmty !");
-		if (ft_strtrim(argv[incmd], " ")[0] == '\0')
-		{
-			ft_printf("\x1b[36m   +> \033[0m%-22s%-32s%s\n", argv[incmd],"\x1b[31mCommend not Found !\x1b[0m", "\x1b[31m KO \x1b[0m");
-			exit(EXIT_FAILURE);
-		}
-		if (cheack_abs_path(commends, argv[incmd], j) == 0)
-		{
-			incmd++;
-			j++;
-			continue;
-		}
+		commends[j] = allocate_cmds(commends[j]);
+		str = ft_strtrim(argv[incmd], " ");
+		if (str[0] == '\0')
+			emty_arg_v(argv[incmd]);
+		if (cheack_abs_path(commends, argv[incmd], &j, &incmd) == 0)
+			continue ;
 		commends[j]->cmd = ft_split(argv[incmd], ' ');
 		find_path(commends, paths, &j, &incmd);
+		free(str);
 		j++;
 	}
 	free_path(paths);

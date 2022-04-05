@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:38:29 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/03/30 19:04:46 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/04/05 12:18:29 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-
 int		ft_printf(const char *format, ...);
 /***************Libc functions***********/
 // ft_is
@@ -34,7 +33,7 @@ int		ft_isalpha(int v);
 int		ft_isascii(int i);
 int		ft_isdigit(int d);
 int		ft_isprint(int p);
-int 	ft_is_in(char c, char *str);
+int		ft_is_in(char c, char *str);
 // ft_str
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);

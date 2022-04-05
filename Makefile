@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -Werror
 GET_NEXT_LINE = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c 
 OBJS_GET_NEXT_LINE = $(GET_NEXT_LINE:.c=.o)
 
-SRCS = srcs/cmds_process.c srcs/pipex_bonus_utils.c srcs/open_file.c srcs/errors.c srcs/get_path.c srcs/child_process.c srcs/pipex_free.c  srcs/get_path_cmd.c
+SRCS = srcs/cmds_process.c srcs/pipex_bonus_utils.c srcs/open_file.c srcs/errors.c srcs/get_path.c srcs/child_process.c srcs/pipex_free.c  srcs/get_path_cmd.c srcs/print_message.c srcs/cheack_abs_path.c 
 OBJS = $(SRCS:.c=.o)
 
 SRCS_MANDATORY = srcs/pipex.c
@@ -59,7 +59,7 @@ error:fclean bonus
 	@valgrind --leak-check=full --show-leak-kinds=all ./pipex srcs/pipex_bonus.c cat "grp index"  "grep int" "wc -l"  outfile
 
 clean: 
-	@rm -f $(OBJS) $(OBJS_BONUS)
+	@rm -f $(OBJS) $(OBJS_BONUS) $(OBJS_MANDATORY)
 	@make clean -C ./libft
 fclean : clean 
 	@make fclean -C ./libft
@@ -67,6 +67,5 @@ fclean : clean
 	@echo "\x1b[36m   +> Clean $(NAME) \033[0m\033[38;5;42m [Done] \033[0m";
 
 re : fclean all
-	@make re -C ./libft/
 
 .PHONY : all $(NAME) clean fclean re

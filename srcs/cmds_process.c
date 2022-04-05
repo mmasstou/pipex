@@ -6,7 +6,7 @@
 /*   By: mmasstou <mmasstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:53:15 by mmasstou          #+#    #+#             */
-/*   Updated: 2022/04/04 22:07:10 by mmasstou         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:16:41 by mmasstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	cmds_process(int argc, t_cmds **cmds, char *envp[], t_pipe *ids)
 {
 	int	jndex;
-	int	status;
 
 	jndex = 0;
 	while (cmds[jndex] != NULL)
@@ -34,8 +33,5 @@ void	cmds_process(int argc, t_cmds **cmds, char *envp[], t_pipe *ids)
 		ids->fd[0] = ids->pipe[0];
 		jndex++;
 	}
-	waitpid(ids->forkid, &status, 0);
-	ft_printf(" Status :");
-	ft_putnbr_fd(status, 1);
-	
+	waitpid(ids->forkid, NULL, 0);
 }
