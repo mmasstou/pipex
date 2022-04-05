@@ -12,36 +12,36 @@
 
 #include "../include/pipex.h"
 
-char	**get_path(char **envp)
+static char	**stock_path(char *envp)
 {
-	int		index;
 	char	*str;
 	char	**path;
 
+	str = ft_strtrim(envp, "PATH=");
+	path = ft_split(str, ':');
+	free(str);
+	return (path);
+}
+
+char	**get_path(char **envp)
+{
+	int		index;
+	char	**path;
+
 	index = 0;
-	str = NULL;
 	path = NULL;
 	if (!envp)
-	{
-		ft_putendl_fd("Failure to Found Env !", 2);
-		exit (1);
-	}
+		pipex_error("envarement Not Found !");
 	while (envp[index])
 	{
-		
 		if (ft_strnstr(envp[index], "PATH=/", ft_strlen("PATH=/")) != 0)
 		{
-			str = ft_strtrim(envp[index], "PATH=");
-			path = ft_split(str, ':');
-			free(str);
+			path = stock_path(envp[index]);
 			break ;
 		}
 		index++;
 	}
 	if (!path)
-	{
-		ft_putendl_fd("Failure to Found PATH !", 2);
-		exit (1);
-	}
+		pipex_error("PATH Not Found !");
 	return (path);
 }

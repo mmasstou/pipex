@@ -29,8 +29,8 @@ int	main(int argc, char *argv[], char *envp[])
 		else
 		{
 			open_infile(ids, argv[1]);
-			open_outfile(ids, argv[argc - 1]);
 			cmds = get_path_cmd(argc, argv, envp, 2);
+			open_outfile(ids, argv[argc - 1]);
 			cmds_process(argc, cmds, envp, ids);
 			free_path_cmd(cmds);
 		}

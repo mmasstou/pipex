@@ -27,7 +27,26 @@ void	commend_find_successfull(t_cmds *cmds, int status)
 	if (status == PATH_KO)
 		ft_printf("\x1b[36m   +> \033[0m%-22s%-32s%s\n", cmds->cmd[0],"\x1b[31mCommend not Found !\x1b[0m", "\x1b[31m KO \x1b[0m");
 }
+static int cheack_abs_path(t_cmds	**commends, char *path,int j)
+{
+	char	**str;
+	int 	i;
+	int m = -1;
 
+	i = access(path, X_OK);
+	if (i == 0)
+	{
+		commends[j]->path = ft_strdup(path);
+		str = ft_split(path,'/');
+		while (str[++m]);
+		m--;
+		commends[j]->cmd = ft_split(str[m], '/');
+		commends[j]->cmd[1] = NULL;
+		commend_find_successfull(commends[j],PATH_OK);
+		return (0);
+	}
+	return (-1);
+}
 void	find_path(t_cmds **commends, char **paths, int *j, int *incmd)
 {
 	int	index;
@@ -79,6 +98,12 @@ t_cmds	**get_path_cmd(int argc, char **argv, char *envp[], int incmd)
 		{
 			ft_printf("\x1b[36m   +> \033[0m%-22s%-32s%s\n", argv[incmd],"\x1b[31mCommend not Found !\x1b[0m", "\x1b[31m KO \x1b[0m");
 			exit(EXIT_FAILURE);
+		}
+		if (cheack_abs_path(commends, argv[incmd], j) == 0)
+		{
+			incmd++;
+			j++;
+			continue;
 		}
 		commends[j]->cmd = ft_split(argv[incmd], ' ');
 		find_path(commends, paths, &j, &incmd);
