@@ -41,3 +41,12 @@ Your program will be executed as follows:
    • Your program mustn’t have memory leaks.<br>
    • If you have any doubt, handle the errors like the shell command: ```< file1 cmd1 | cmd2 > file2 ```<br>
 # Bonus Part :
+## You will get extra points if you:
+### Handle multiple pipes.
+This:``` $> ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2 ```<br>
+Should behave like: ```< file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2 ```<br>
+### Support « and » when the first parameter is "here_doc".
+This:```$> ./pipex here_doc LIMITER cmd cmd1 file ```<br>
+Should behave like: ```cmd << LIMITER | cmd1 >> file ```<br>
+
+!! Consider this a warning.
