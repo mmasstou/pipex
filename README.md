@@ -51,5 +51,5 @@ Should behave like: ```cmd << LIMITER | cmd1 >> file ```<br>
 
 :exclamation: Consider this a warning.<br>
 :warning: **If you are using mobile browser**: Be very careful here!<br>
->[!WARNING]
+>:warning:
 >This is a warning
