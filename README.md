@@ -49,7 +49,5 @@ Should behave like: ```< file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2 ```<br>
 This:```$> ./pipex here_doc LIMITER cmd cmd1 file ```<br>
 Should behave like: ```cmd << LIMITER | cmd1 >> file ```<br>
 
-:exclamation: Consider this a warning.<br>
-:warning: **If you are using mobile browser**: Be very careful here!<br>
 >:warning:
->This is a warning
+>The bonus part will only be assessed if the mandatory part is PERFECT. Perfect means the mandatory part has been integrally done and works without malfunctioning. If you have not passed ALL the mandatory requirements, your bonus part will not be evaluated at all.
