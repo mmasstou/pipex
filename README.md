@@ -49,5 +49,7 @@ Should behave like: ```< file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2 ```<br>
 This:```$> ./pipex here_doc LIMITER cmd cmd1 file ```<br>
 Should behave like: ```cmd << LIMITER | cmd1 >> file ```<br>
 
-:exclamation: Consider this a warning.
-:warning: **If you are using mobile browser**: Be very careful here!
+:exclamation: Consider this a warning.<br>
+:warning: **If you are using mobile browser**: Be very careful here!<br>
+>[!WARNING]
+>This is a warning
