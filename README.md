@@ -50,3 +50,4 @@ This:```$> ./pipex here_doc LIMITER cmd cmd1 file ```<br>
 Should behave like: ```cmd << LIMITER | cmd1 >> file ```<br>
 
 :exclamation: Consider this a warning.
+:warning: **If you are using mobile browser**: Be very careful here!
