@@ -36,9 +36,8 @@ Your program will be executed as follows:
  ### Should behave like : < infile ls -l | wc -l > outfile
 ## Requirements:
 ### Your project must comply with the following rules:
-   • You have to turn in a Makefile which will compile your source files. It must not
-relink.
-   • You have to handle errors thoroughly. In no way your program should quit unexpectedly (segmentation fault, bus error, double free, and so forth).
-   • Your program mustn’t have memory leaks.
-   • If you have any doubt, handle the errors like the shell command: ```< file1 cmd1 | cmd2 > file2 ```
+   • You have to turn in a Makefile which will compile your source files. It must not relink. <br>
+   • You have to handle errors thoroughly. In no way your program should quit unexpectedly (segmentation fault, bus error, double free, and so forth).<br>
+   • Your program mustn’t have memory leaks.<br>
+   • If you have any doubt, handle the errors like the shell command: ```< file1 cmd1 | cmd2 > file2 ```<br>
 # Bonus Part :
