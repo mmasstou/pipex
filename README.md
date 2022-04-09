@@ -3,10 +3,7 @@
 <hr>
 # External functs
 
-
-
-# Description :
-This project is about handling pipes.
+# Description : This project is about handling pipes.
 ```
 • access
 • open
